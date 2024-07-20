@@ -8,8 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class StrConsumerListener {
 
+    @KafkaListener(groupId = "group-0", topics = "str-topic", containerFactory = "strContainerFactory")
+    public void create(String message){
+        log.info("CREATE ::: Received Message {}", message);
+    }
+
     @KafkaListener(groupId = "group-1", topics = "str-topic", containerFactory = "strContainerFactory")
-    public void listener(String message){
-        log.info("Received Message {}", message);
+    public void LOG(String message){
+        log.info("LOG ::: Received Message {}", message);
+    }
+
+    @KafkaListener(groupId = "group-2", topics = "str-topic", containerFactory = "strContainerFactory")
+    public void history(String message){
+        log.info("HISTORY ::: Received Message {}", message);
     }
 }
